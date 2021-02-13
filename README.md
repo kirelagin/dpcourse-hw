@@ -4,11 +4,11 @@ SPDX-FileCopyrightText: 2021 Kirill Elagin <https://kir.elagin.me/>
 SPDX-License-Identifier: MPL-2.0
 -->
 
-# Differential Privacy HW1 _(dpcourse-hw1)_
+# Differential Privacy HW _(dpcourse-hw)_
 
 An attack on a non-so-differentially-private algorithm.
 
-This is part of HW1 for the “Privacy in Statistics and Machine Learning”
+This is part of homework assignments for the “Privacy in Statistics and Machine Learning”
 class (CS 591 S1 at BU / CS7880 at NEU). The code demostrates an attack
 that is able to recover a big share of “private” information released
 in a pretty insecure way.
