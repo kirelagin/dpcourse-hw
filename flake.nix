@@ -38,7 +38,7 @@
         defaultApp = {
           type = "app";
           program = toString (pkgs.writeShellScript "dpcourse-hw1-jupyter" ''
-            ${env}/bin/jupyter notebook --notebook-dir=./dpcourse_hw1
+            ${env}/bin/jupyter notebook --notebook-dir=./dpcourse_hw1/notebooks
           '');
         };
 
@@ -52,6 +52,8 @@
           ];
 
           shellHook = ''
+            export PYTHONPATH=.
+
             echo 'To launch Jupyter, run:'
             echo '  $ jupyter notebook'
           '';
@@ -65,12 +67,12 @@
           mypy ./dpcourse_hw1 | tee "$out"
           '';
 
-          mypy-nb = pkgs.runCommand "check-mypy-nb" {
-            nativeBuildInputs = [ env ];
-          } ''
-          cd "${src}"
-          nbqa mypy ./dpcourse_hw1/Solve.ipynb | tee "$out"
-          '';
+          #mypy-nb = pkgs.runCommand "check-mypy-nb" {
+          #  nativeBuildInputs = [ env ];
+          #} ''
+          #cd "${src}"
+          #nbqa mypy ./dpcourse_hw1/notebooks/Solve.ipynb | tee "$out"
+          #'';
 
           reuse = pkgs.runCommand "check-reuse" {
             nativeBuildInputs = [ pkgs.reuse ];

@@ -13,6 +13,9 @@ python = "^3.8"
 jupyter = "^1.0.0"
 jupyter-packaging = "^0.7.12"
 z3-solver = "^4.8.10"
+numpy = "^1.20.1"
+scipy = "^1.6.0"
+plotly = "^4.14.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

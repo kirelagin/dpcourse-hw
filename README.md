@@ -61,12 +61,15 @@ it if the dependencies change.
 ### Structure
 
 All code goes into the `dpcourse_hw1` directory.
-Boring stuff is in simple `.py` files, interesting stuff in Jupyter notebooks.
+Jupyter notebooks go to a separate `notebooks` subdirectory (because Jupyter
+messes up `sys.path` in really bad ways).
+
+Boring stuff belongs to simple `.py` files, interesting stuff – to Jupyter notebooks.
 
 ### Types
 
 * Run `mypy ./dpcourse_hw1` to type-check `.py` files
-* Run `nbqa mypy ./dpcourse_hw1/Solve.ipynb` to type-check the notebook
+* Run `nbqa mypy ./dpcourse_hw1/notebooks` to type-check notebooks
 
 
 ## Contributing
