@@ -7,6 +7,7 @@ import sys
 from typing import Callable, Generator, Sequence
 
 
-# The solver function takes a generator of noisy prefix sums
+# The solver function takes a generator of noisy prefix sums and a hint
 SolverInput = Generator[int, None, None]
-Solver = Callable[[SolverInput], Sequence[int]]
+SolverHint = Sequence[int]
+Solver = Callable[[SolverInput, SolverHint], Sequence[int]]

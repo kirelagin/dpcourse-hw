@@ -3,11 +3,12 @@
 # SPDX-License-Identifier: MPL-2.0
 
 from functools import partial
+from math import ceil
 import numpy as np
 import numpy.random as rand
 from typing import Sequence, Tuple
 
-from dpcourse_hw1.typing import Solver, SolverInput
+from dpcourse_hw1.typing import Solver, SolverHint, SolverInput
 from dpcourse_hw1.stats import Estimator
 
 rng = rand.default_rng()
@@ -22,11 +23,18 @@ def outputs(xs: Sequence[int]) -> SolverInput:
 
 
 def run_solver(s: Solver, n: int, p: float) -> int:
-  """Run solver on a random input and count correct guesses."""
+  """Run solver on a random input and count correct guesses.
+
+  n is the size of the input to generate
+  p is the probability that each bit in the hint is correct
+  """
   # Random data record
-  xs = rng.random(n) <= p
+  xs = rng.random(n) <= 1/2
+  # Hint
+  hint_mask = rng.random(n) <= p
+  hint = hint_mask * xs + (1 - hint_mask) * (1 - xs)
   # Run the solver on it
-  guess = s(outputs(xs))
+  guess = s(outputs(xs), hint)
   correct: int = np.sum(xs == guess)
   return correct
 
@@ -39,7 +47,7 @@ def evaluate(s: Solver, n: int, confidence: float, p: float = 0.5) -> Tuple[floa
   """
   est = Estimator()
 
-  trials: int = 100
+  trials: int = max(10, ceil(10000 / n))
   for _i in range(trials):
     res = run_solver(s, n, p)
     est.observe(res / n)
@@ -52,15 +60,13 @@ def evaluate(s: Solver, n: int, confidence: float, p: float = 0.5) -> Tuple[floa
 # For testing from the command line
 ###
 
-def dumb_solver(sums: SolverInput, p: float = 0.5) -> Sequence[int]:
-  """A solver that makes a completely random guess."""
-  n = sum(1 for _s in sums)  # count items in the generator without looking at them
-  guess: Sequence[int] = rng.random(n) <= p
-  return guess
+def dumb_solver(sums: SolverInput, hint: SolverHint) -> Sequence[int]:
+  """A solver that just returns the hint."""
+  return hint
 
 if __name__ == '__main__':
   (mean, margin) = evaluate(dumb_solver, 100, .99)
   print(f'Mean = {mean:.4} ± {margin:.4}')
 
-  (mean, margin) = evaluate(partial(dumb_solver, p=2/3), 100, .99, p=2/3)
+  (mean, margin) = evaluate(partial(dumb_solver), 100, .99, p=2/3)
   print(f'Mean = {mean:.4} ± {margin:.4}')
