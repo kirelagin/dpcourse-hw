@@ -65,7 +65,6 @@ def main() -> None:
         (avg, std, rec_avg_std) = evaluate(distr, r, N(n))
         print(f'&  {avg:.2f} / {std:.2f} / {rec_avg_std:.2f}', end=' ')
       print(r' \\')
-    print()
     print(r' \hline')
 
 if __name__ == '__main__':
