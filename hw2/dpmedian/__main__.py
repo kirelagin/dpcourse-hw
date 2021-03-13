@@ -44,22 +44,28 @@ def bimodal(k: int, r: int, n: int) -> np.ndarray:
 
 def main() -> None:
 
-  distrs: List[Tuple[str, List[int], Distr]] = [
-    ('Gaussian', [100, 1000, 10000], lambda r, n: rng.normal(r/4, r/sqrt(10), n)),
-    ('Poisson', [100, 1000, 10000], lambda _r, n: rng.poisson(50, n)),
-  ] + [
-    (f'Bimodal (k={k})', [1000], lambda r, n: bimodal(k, r, n)) for k in [10, 100, 200]
+  distrs: List[Tuple[str, List[Tuple[str, R, Distr]]]] = [
+    ('Gaussian', [(f'R = {r}', R(r), lambda r, n: rng.normal(r/4, r/sqrt(10), n)) for r in [100, 1000, 10000]]),
+    ('Poisson',  [(f'R = {r}', R(r), lambda r, n: rng.poisson(50, n)) for r in [100, 1000, 10000]]),
+    ('Bimodal',  [(f'k = {k}', R(1000), lambda r, n: bimodal(k, r, n)) for k in [10, 100, 200]]),
   ]
-  for (name, rs, distr) in distrs:
+  for (name, col) in distrs:
     print()
     print(f'{name}:')
     print(f'---')
+    print(r' \hline')
+    for (label, _r, _distr) in col:
+      print(f' & {label}', end=' ')
+    print()
+    print(r' \hline')
     for n in [50, 100, 500, 2000, 10000]:
       print(f' n = {n}', end=' ')
-      for r in rs:
-        (avg, std, rec_avg_std) = evaluate(distr, R(r), N(n))
+      for (_label, r, distr) in col:
+        (avg, std, rec_avg_std) = evaluate(distr, r, N(n))
         print(f'&  {avg:.2f} / {std:.2f} / {rec_avg_std:.2f}', end=' ')
       print(r' \\')
+    print()
+    print(r' \hline')
 
 if __name__ == '__main__':
   main()
