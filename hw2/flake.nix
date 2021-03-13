@@ -19,10 +19,12 @@
           projectDir = src;
         };
 
-      in {
+      in rec {
+        defaultPackage = app;
+
         defaultApp = {
           type = "app";
-          program = "${app}/bin/median-stats";
+          program = "${defaultPackage}/bin/median-stats";
         };
 
         checks = {
