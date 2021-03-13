@@ -14,7 +14,7 @@ rng = default_rng()
 
 def median(record: np.ndarray, r: int, eps: float) -> int:
   # scale = 1 / lambda
-  scale: float = 1 / eps
+  scale: float = 2 / eps
 
   def trim(x: float) -> int:
     if x > r: return r
