@@ -57,7 +57,7 @@ def main() -> None:
     print(r' \hline')
     for (label, _r, _distr) in col:
       print(f' & {label}', end=' ')
-    print()
+    print(r' \\')
     print(r' \hline')
     for n in [50, 100, 500, 2000, 10000]:
       print(f' n = {n}', end=' ')
