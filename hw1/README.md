@@ -48,8 +48,6 @@ With [Nix], run `nix develop` to get a shell with everything you need
 Wihout Nix, make sure you have [Poetry] and all required system dependencies,
 then run `poetry shell`.
 
-### Hacking
-
 ### Dependencies
 
 Since this is a Poetry project, use `poetry` to add or remove Python

@@ -38,8 +38,6 @@ Wihout Nix, make sure you have [Poetry] and run `poetry shell`.
 Then use `python3 -m dpmedian` to run the program.
 
 
-### Hacking
-
 ### Dependencies
 
 Since this is a Poetry project, use `poetry` to add or remove Python
