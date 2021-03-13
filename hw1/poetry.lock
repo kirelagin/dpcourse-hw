@@ -882,18 +882,10 @@ python-versions = "*"
 [package.dependencies]
 notebook = ">=4.4.1"
 
-[[package]]
-name = "z3-solver"
-version = "4.8.10.0"
-description = "an efficient SMT solver library"
-category = "main"
-optional = false
-python-versions = "*"
-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "7a8aaf1d42ed7ed6fe0feb241ee682d5c063e86cb3d3f9bc7281e48b6d82be6c"
+content-hash = "f04e4df7736725d8a448b8918bf1938db00230cffc82f36afe69907f5fbd7234"
 
 [metadata.files]
 appnope = [
@@ -1462,11 +1454,4 @@ webencodings = [
 widgetsnbextension = [
     {file = "widgetsnbextension-3.5.1-py2.py3-none-any.whl", hash = "sha256:bd314f8ceb488571a5ffea6cc5b9fc6cba0adaf88a9d2386b93a489751938bcd"},
     {file = "widgetsnbextension-3.5.1.tar.gz", hash = "sha256:079f87d87270bce047512400efd70238820751a11d2d8cb137a5a5bdbaf255c7"},
-]
-z3-solver = [
-    {file = "z3-solver-4.8.10.0.tar.gz", hash = "sha256:cd022a66524685bdd8b265027bd22f24c35f8db29a4287d005e0005757ffdc21"},
-    {file = "z3_solver-4.8.10.0-py2.py3-none-macosx_10_15_x86_64.whl", hash = "sha256:dca0a50817d25ebd021ddc55cdebb1bb359f8424266d2384935ded330890893a"},
-    {file = "z3_solver-4.8.10.0-py2.py3-none-manylinux1_x86_64.whl", hash = "sha256:1dd6b459d512a5644b38a0d55c915cdb3269b6d52b36ea14d9b32ce1d1a85d9a"},
-    {file = "z3_solver-4.8.10.0-py2.py3-none-win32.whl", hash = "sha256:6fb188b34847a958e82efbe1a7a354675b2929145c6dcb45a1256aaeb9c49414"},
-    {file = "z3_solver-4.8.10.0-py2.py3-none-win_amd64.whl", hash = "sha256:a0bbbc1a02b25db3b824ab5e839b2c0b0cc2130da914f3ba09b7b38d05e1827c"},
 ]
