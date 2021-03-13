@@ -27,12 +27,13 @@ def rank(arr: np.ndarray, x: float) -> int:
   return r
 
 def evaluate(distr: Distr, r: R, n: N) -> Tuple[float, float, float]:
-  err = np.empty((50, 10))
+  (n_data_sets, n_runs) = (50, 10)
 
-  for i in range(50):
+  err = np.empty((n_data_sets, n_runs))
+  for i in range(n_data_sets):
     record = distr(r, n)
     record.sort()  # the algorithm does not care if it is sorted, sorting for `rank`
-    for j in range(10):
+    for j in range(n_runs):
       result = dp.median(record, r=r, eps=0.1)
       err[i][j] = abs(float(rank(record, result)) - n / 2)
 
